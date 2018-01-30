@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
+    <p class="txt-center" style="font-size: 3vw;">Create new subject.</p>
+    <div class="subject-create">
+        <form th:action="@{/subject/edit/} + ${subjectId}" th:object="${subjectAddForm}" method="post">
+
+            <p class="txt-center"><a>Code: </a>
+                <input type="text" th:field="*{code}" th:value="${subject.code}" th:class="${#fields.hasErrors('code')}? fieldError"></p>
+
+            <span class="err-msg"><a th:if="${#fields.hasErrors('code')}" th:errors="*{code}">err-msg</a></span>
+
+            <p class="txt-center"><a>Subject name: </a>
+                <input type="text" th:field="*{name}" th:value="${subject.name}" th:class="${#fields.hasErrors('name')}? fieldError"></p>
+
+            <span class="err-msg"><a th:if="${#fields.hasErrors('name')}" th:errors="*{name}">err-msg</a></span>
+
+            <p class="txt-center"><a>Department: </a>
+                <input type="text" th:field="*{department}" th:value="${subject.department}" th:class="${#fields.hasErrors('department')}? fieldError"></p>
+
+            <span class="err-msg"><a th:if="${#fields.hasErrors('department')}" th:errors="*{department}">err-msg</a></span>
+
+            <p class="txt-center"><a>Faculty: </a>
+                <input type="text" th:field="*{faculty}" th:value="${subject.faculty}" th:class="${#fields.hasErrors('faculty')}? fieldError"></p>
+
+            <span class="err-msg"><a th:if="${#fields.hasErrors('faculty')}" th:errors="*{faculty}">err-msg</a></span>
+            <span><p class="txt-center"><button class="btn btn-lg btn-info">Submit</button><a href="/subject/list" class="btn btn-lg btn-warning">Return</a></p></span>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

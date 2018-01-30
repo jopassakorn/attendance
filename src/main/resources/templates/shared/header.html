@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:fragment="header">
+    <nav class="navbar navbar-inverse desktop">
+        <div class="navbar-header">
+            <p><a class="navbar-brand" href="/">RMUTK ATTENDANCE</a></p>
+        </div>
+        <ul class="nav navbar-nav fr" style="position:relative; left: -40px;">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/subject/list">All Subject</a></li>
+            <li><a th:if="${isAdmin}" th:href="@{/user/list}">All User</a></li>
+            <li><a th:href="@{/section/list/}">All Section</a></li>
+            <li><a th:if="${isAdmin}" th:href="@{/worklog/control}">Control</a></li>
+            <li th:if="${isLogin}" class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="${googleUser.givenName} + '&#9660;'">Profile</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/user/profile/} + ${userId}" th:if="${isRmutk}">Profile</a></li>
+                    <li><a th:href="@{/section/list/} + ${userId}" th:if="${isRmutk}">My Section</a></li>
+                    <li><a th:href="@{/worklog/view/} + ${userId}" th:if="${isRmutk}">My Work Schedule</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!--mobile section-->
+
+    <nav class="navbar navbar-inverse mobile">
+        <ul class="nav navbar-nav">
+            <li th:if="${isLogin}" class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#">ATTENDANCE &#9660;</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a th:href="@{/subject/list}">All Subject</a></li>
+                    <li><a th:href="@{/user/list}">All User</a></li>
+                    <li><a th:href="@{/section/list/} + ${userId}">My Section</a></li>
+                    <li><a th:href="@{/worklog/view/} + ${userId}">My Work Schedule</a></li>
+                    <li><a th:if="${isAdmin}" th:href="@{/control}">Control</a></li>
+                    <li><a  th:href="@{/user/profile/} + ${userId}">Profile</a></li>
+                    <li><a href="/logout">Log out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container" layout:fragment="main" th:remove="tag">
+    <p class="txt-center welcome"><a>Welcome to RMUTK Attendance <br><a th:text="${googleUser.givenName} + ' ' + ${googleUser.familyName}"></a></a></p>
+    <div th:unless="${isActivated}">
+        <p class="txt-center" style="font-size:2vw;">Your work schedule are not created yet<br>Please register your finger: <a style="color:red" href="/user/reg_finger">here</a></p>
+    </div>
+    <div id="welcomeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="txt-center"> We just create your work schedule
+                <br> Please check it in your work schedule
+            </p>
+        </div>
+    </div>
+    <div class="date-box" th:if="${isActivated}">
+        <p>Your next section: </p>
+        <div th:unless="${isNoSection}">
+            <p>Subject: <a th:text="${nextSection.subject.name}"></a></p>
+            <p>day: <a th:text="${dayMap[nextSection.day]}"></a></p>
+            <p>Time: <a th:text="${nextSectionTime}"></a></p>
+            <p>Room: <a th:text="${room}"></a></p>
+        </div>
+        <p th:if="${isNoSection}"> There's no next class. Please create new one!</p>
+    </div>
+<script th:inline="javascript">
+    $(function(){
+        var message = [[${welcomeModal}]];
+        if(message == true){
+            $("#welcomeModal").css("display","block");
+        }
+
+        $(window).click(function(e){
+            if($(e.target).attr('class') == "modal"){
+                $(".modal").css("display","none");
+            }
+        });
+
+        $(".close").click(function(){
+            $(".modal").css("display","none");
+        });
+
+    });
+</script>
+</div>
+</body>
+</html>

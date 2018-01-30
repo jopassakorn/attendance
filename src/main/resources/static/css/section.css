@@ -1,0 +1,46 @@
+.section-create{
+    margin: 2.5vh 2.5vw;
+    border: 1px solid black;
+    padding: 3vw 3vw;
+}
+
+.section-create label{
+    width: 10vw;
+}
+
+.section-create select{
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #E5E7E9;
+}
+
+.section-create input{
+    border-radius: 5px;
+    border-color: #FCF3CF;
+    padding: 5px 10px;
+    background-color: #D6EAF8;
+}
+
+.sidebar-info{
+    border-right: 1px solid black;
+    height: 90vh;
+}
+
+.alert-text{
+    color: red;
+}
+
+.section-create-from{
+    margin-left: 2vw;
+}
+
+.section-create-from span button{
+    margin-left: 12vw;
+    margin-right: 0.5vw;
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px){
+    .sidebar-info{
+        display:none;
+    }
+}

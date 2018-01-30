@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+        <css th:include="common/css :: css"></css>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <div class=" col-sm-12 col-lg-12">
+        <section class="top-banner">
+            &#8759;Time Attendance
+        </section>
+
+        <div class="top-card">
+            <div class="card-header">
+                Complete information below to sign up
+            </div>
+            <form th:action="@{/signup}" th:object="${userAddForm}" method="post">
+                <div class="signup-input">
+                    <section>
+                        <span><a>Username: </a></span>
+                        <span><input type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')}? fieldError"></span>
+                    </section>
+                    <span class="err-msg"><a th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Password must contain at least 6 characters.</a></span>
+                    <section>
+                        <span><a>Password: </a></span>
+                        <span><input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}? fieldError"></span>
+                    </section>
+                    <span class="err-msg"><a th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password must contain at least 6 characters.</a></span>
+                    <section>
+                        <span><a>Password: </a></span>
+                        <span><input type="password" th:field="*{repeatPassword}" th:class="${#fields.hasErrors('repeatPassword')}? fieldError"></span>
+                    </section>
+                    <span class="err-msg"><a th:if="${#fields.hasErrors('repeatPassword')}" th:errors="*{repeatPassword}">Password must contain at least 6 characters.</a></span>
+                    <section>
+                        <span><a>Email: </a></span>
+                        <span><input type="email" th:field="*{email}" th:class="${#fields.hasErrors('email')}? fieldError"></span>
+                    </section>
+                    <span class="err-msg"><a th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Password must contain at least 6 characters.</a></span>
+                    <a><br></a>
+                    <section>
+                        <span><a>First name: </a></span>
+                        <span><input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')}? fieldError"></span>
+                    </section>
+                    <span class="err-msg"><a th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Password must contain at least 6 characters.</a></span>
+                    <section>
+                        <span><a>Last name: </a></span>
+                        <span><input type="text" th:field="*{lastName}" th:class="${#fields.hasErrors('lastName')}? fieldError"></span>
+                    </section>
+                    <span class="err-msg"><a th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Password must contain at least 6 characters.</a></span>
+                    <section class="sign-up-btn">
+                        <span style="position:relative;left:20vw;"><button type="submit" class="btn btn-sm btn-info">Submit</button> <a class="btn btn-sm btn-warning button" type="button" href="/login">Return</a></span>
+                    </section>
+                </div>
+            </form>
+                <!--<table class="ml20">-->
+                    <!--<tr>-->
+                        <!--<td class="signup-input-title">-->
+                            <!--<br> Username:<br>-->
+                            <!--Password:<br>-->
+                            <!--Repeat Password:<br>-->
+                        <!--</td>-->
+                        <!--<td class="signup-input">-->
+                            <!--<br><br><input type="text"><br>-->
+                            <!--<input type="text"><br>-->
+                            <!--<input type="text"><br>-->
+                        <!--</td>-->
+                        <!--<td class="signup-err-msg">-->
+                            <!--<br><a>ErrMsghjgjhgjhgkkgkjhgkgjkgkhgkjgjk</a><br>-->
+                            <!--<a>ErrMsg</a><br>-->
+                            <!--<a>ErrMsg</a><br>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td class="signup-input-title">-->
+                            <!--<br>First name:<br>-->
+                            <!--Last name:<br>-->
+                            <!--Age:<br>-->
+                        <!--</td>-->
+                        <!--<td class="signup-input">-->
+                            <!--<br><br><input type="text"><br>-->
+                            <!--<input type="text"><br>-->
+                            <!--<input type="text"><br>-->
+                        <!--</td>-->
+                        <!--<td class="signup-err-msg">-->
+                            <!--<br><a>ErrMsg</a><br>-->
+                            <!--<a>ErrMsg</a><br>-->
+                            <!--<a>ErrMsg</a><br>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td></td>-->
+                        <!--<td style="padding-left: 120px;">-->
+                            <!--<input class="btn btn-md btn-info" type="submit">-->
+                            <!--<button class="btn btn-md btn-warning">Return</button>-->
+                        <!--</td>-->
+                        <!--<td></td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+        </div>
+    </div>
+</body>
+</html>

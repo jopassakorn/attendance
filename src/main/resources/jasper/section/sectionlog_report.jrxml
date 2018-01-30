@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sectionlog_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b5fe53cb-c452-4713-a916-2ce8f45e1618">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="jasperPath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["src/main/resources/jasper"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emptyDataSource" class="net.sf.jasperreports.engine.JRDataSource">
+		<defaultValueExpression><![CDATA["src/main/resources/jasper"]]></defaultValueExpression>
+	</parameter>
+	<field name="name" class="java.lang.String"/>
+	<field name="semester" class="java.lang.String"/>
+	<field name="subjectName" class="java.lang.String"/>
+	<field name="started" class="java.lang.String"/>
+	<field name="ended" class="java.lang.String"/>
+	<field name="day" class="java.lang.String"/>
+	<field name="time" class="java.lang.String"/>
+	<field name="lateTimes" class="java.lang.String"/>
+	<field name="onTimes" class="java.lang.String"/>
+	<field name="absent" class="java.lang.String"/>
+	<field name="present" class="java.lang.String"/>
+	<field name="sectionlogPdfForms" class="java.util.ArrayList"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<staticText>
+				<reportElement x="250" y="0" width="100" height="30" uuid="5102f066-5430-4d5d-bbb5-d8530a68c455"/>
+				<text><![CDATA[Section Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="15" width="180" height="30" uuid="ddaa06b1-2841-404a-a625-6b5cdf49eb23"/>
+				<text><![CDATA[Semester: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="180" height="30" uuid="5e87b300-49f7-4b7e-982a-c285380c3121"/>
+				<text><![CDATA[Started: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="60" width="100" height="30" uuid="40677a6d-2025-402d-afa3-429c6a9de7e6"/>
+				<text><![CDATA[Ended: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="90" width="100" height="30" uuid="5faf587c-c10d-475a-a013-5fa8e21cc151"/>
+				<text><![CDATA[Day: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="91" width="100" height="30" uuid="34943fd4-81f7-4800-a5ed-1f3d0e296a41"/>
+				<text><![CDATA[Time: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="60" width="170" height="30" uuid="cc77aa62-dcbb-43e2-b4f4-aff9080d8435"/>
+				<text><![CDATA[Lecturere: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="338" y="16" width="100" height="30" uuid="6049a6f6-bae4-4bd5-965d-bb5b05b99c12"/>
+				<textFieldExpression><![CDATA[$F{semester}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="61" width="100" height="30" uuid="d818ca86-caa9-4391-917b-d5bee0cc68f1"/>
+				<textFieldExpression><![CDATA[$F{started}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="61" width="100" height="30" uuid="0a962218-1e2e-479c-928b-0ebf53c9307f"/>
+				<textFieldExpression><![CDATA[$F{ended}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="90" width="100" height="30" uuid="f83d0e19-9c2e-4d4c-baa0-eabb63b743d2"/>
+				<textFieldExpression><![CDATA[$F{day}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="91" width="100" height="30" uuid="51c4ab55-0edd-4f16-8fbb-e2528f7bd203"/>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="15" width="130" height="30" uuid="fb259c72-9760-4797-a5f3-4808d15749d4"/>
+				<textFieldExpression><![CDATA[$F{subjectName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="60" width="231" height="30" uuid="a9b1ec85-c414-4974-901d-7961b9398f83"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="215" splitType="Stretch">
+			<subreport>
+				<reportElement x="1" y="0" width="554" height="200" uuid="e5fb902e-3d1e-4797-ae2f-c911d30fdc57"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{sectionlogPdfForms},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{jasperPath}+"/section/sectionlog_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="1185d62f-f782-45b5-91cc-629b8936ecad"/>
+				<text><![CDATA[Ontime:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="0" width="100" height="30" uuid="65b6226e-3354-4a2e-b4aa-d94372192f88"/>
+				<text><![CDATA[Late: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="100" height="30" uuid="c86fb8ef-127f-47b3-b0b0-426ce8def6d5"/>
+				<text><![CDATA[Present: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="0" width="100" height="30" uuid="14c7348f-3430-4566-9bbd-5832f24f1b30"/>
+				<text><![CDATA[Absent: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="0" width="100" height="30" uuid="7da1ff9d-ef99-4f8d-ab3b-58733b60677c"/>
+				<textFieldExpression><![CDATA[$F{onTimes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="100" height="30" uuid="0d2b48da-e3e8-4fae-adb1-901de1cb7ea8"/>
+				<textFieldExpression><![CDATA[$F{lateTimes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="30" uuid="653b3926-db0a-4529-86cb-1de45b240113"/>
+				<textFieldExpression><![CDATA[$F{present}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="30" uuid="e809afd0-1963-4b68-9f45-6342829732f3"/>
+				<textFieldExpression><![CDATA[$F{absent}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

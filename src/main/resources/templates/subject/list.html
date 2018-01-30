@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
+    <p class="txt-center font-size-4vw">All Subject in Attendance Application</p>
+    <div th:unless="${subjectList} != null">
+        <p style="font-size: 16px;margin-left: 80px;"><a id="create-msg">create new subject.</a>
+            <a href="/subject/create" class="btn btn-md btn-primary" type="button"> Create new Subject</a>
+        </p>
+        <div class="container">
+            <table class="table table-striped">
+                <tr>
+                    <th>Code</th>
+                    <th>Subject name</th>
+                    <th>Department</th>
+                    <th>Faculty</th>
+                    <th class="td-created">Created Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr th:each="subject : ${subjects}">
+                    <td th:text="${subject.code}"></td>
+                    <td><a th:text="${subject.name}"></a></td>
+                    <td th:text="${subject.department}"></td>
+                    <td th:text="${subject.faculty}"></td>
+                    <td class="td-created" th:text="${subject.created.date} + '-' + ${subject.created.month + 1} + '-' + ${subject.created.year + 1900}"></td>
+                    <td><a th:value="${subject.id}" th:if="${isAdmin}" class="btn btn-xs btn-warning delete-subject-btn">Delete</a></td>
+                    <td><a th:href="@{/subject/edit/} + ${subject.id}" th:if="${isAdmin}" class="btn btn-xs btn-default edit-subject-btn">Edit</a></td>
+                </tr>
+            </table>
+            <div th:include="common/pagination :: pagination"></div>
+        </div>
+    </div>
+    <div th:unless="${subjectList} == null">
+        <p class="txt-center welcome">There is no subject that was created by now.</p>
+        <p class="txt-center welcome">Please create new subject.
+            <br><a href="/subject/create" class="btn btn-lg btn-primary" type="button"> Create new Subject</a>
+        </p>
+   </div>
+    <script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/js/subject.js"></script>
+</div>
+</body>
+</html>

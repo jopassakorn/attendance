@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container" layout:fragment="main" th:remove="tag">
+    <div class="col-xs-12 col-md-3 user-info" th:if="${userId} == ${user.id}">
+        <div class="user-class">
+            <img th:src="@{${googleUser.picture}}" style="width:100%">
+            <div class="user-container">
+                <h4 th:text="${googleUser.givenName} + ' ' + ${googleUser.familyName}"></h4>
+                <p th:text="${googleUser.email}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-3 user-info" th:if="${userId} != ${user.id}">
+        <div class="user-class">
+            <!--<img th:src="@{${googleUser.picture}}" style="width:100%">-->
+            <div class="user-container">
+                <h4 th:text="${user.firstName} + ' ' + ${user.lastName}"></h4>
+                <p th:text="${user.email}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-9">
+        <h3>Status: </h3>
+        <div class="info-box">
+            <h4>Work status:</h4>
+            <p>This semester(<a th:text="${thisSemester}"></a>): total workday: <a th:text="${totalCurrentWorklogs}"></a>.
+                ongoing: <a th:text="${currentWorklogResult[0]}"></a>. absent: <a th:text="${currentWorklogResult[2]}"></a>.
+                present: <a th:text="${currentWorklogResult[1]}"></a>. late: <a th:text="${currentWorklogResult[3]}"></a>. Ontime: <a th:text="${currentWorklogResult[4]}"></a>.
+                Holiday: <a th:text="${currentWorklogResult[5]}"></a>. <a th:href="@{/worklog/view/} + ${user.id}">See table.</a></p>
+
+        </div>
+
+        <div class="info-box">
+            <h4>Your section:</h4>
+            <p>This semester(<a th:text="${thisSemester}"></a>): total section: <a th:text="${totalCurrentSection}"></a>.
+                ongoing: <a th:text="${currentSectionResult[0]}"></a>. absent: <a th:text="${currentSectionResult[2]}"></a>.
+                present: <a th:text="${currentSectionResult[1]}"></a>. late: <a th:text="${currentSectionResult[3]}"></a>. Ontime: <a th:text="${currentSectionResult[4]}"></a>.
+                 Holiday: <a th:text="${currentSectionResult[5]}"></a>. <a th:href="@{/section/view/current/} + ${user.id}">See table.</a></p>
+            <p>All semester: total section: <a th:text="${totalAllSection}"></a>. Ongoing: <a th:text="${allSectionResult[0]}"></a>.
+                present: <a th:text="${allSectionResult[1]}"></a>. absent: <a th:text="${allSectionResult[2]}"></a>. late: <a th:text="${allSectionResult[3]}"></a>. Ontime: <a th:text="${allSectionResult[4]}"></a>. Holiday: <a th:text="${allSectionResult[5]}"></a>. <a th:href="@{/section/view/past/} + ${user.id}">See table.</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

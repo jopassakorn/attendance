@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container" layout:fragment="main" th:remove="tag">
+    <p class="txt-center">Please insert this code <a th:text="${activatedCode}"> </a> in Fingerprint scanner at
+        <a th:text="${fingerprintLocantion}"></a> and register your fingerprint to server database.</p>
+
+</div>
+</body>
+</html>

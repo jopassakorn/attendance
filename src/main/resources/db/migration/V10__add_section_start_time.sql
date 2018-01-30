@@ -1,0 +1,1 @@
+ALTER TABLE section ADD `sec_started` INT NOT NULL AFTER `room_id`

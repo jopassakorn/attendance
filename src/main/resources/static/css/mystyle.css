@@ -1,0 +1,103 @@
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    height: 15vh;
+}
+
+.signup-header{
+    padding-top: 80%;
+    padding-bottom: 80%;
+    text-align: center;
+    font-family: cursive;
+    height: 100%;
+    letter-spacing: 5px;
+}
+
+.bcolor-grey{
+    background-color: #f2f3f4;
+}
+
+.top-banner{
+    background-color: #EAF2F8;
+    color: #707B7C;
+    font-family: cursive;
+    letter-spacing: 5px;
+    text-align: right;
+    font-size: 22px;
+    width:100%;
+    margin-top:10px;
+}
+
+.top-card{
+    border: 2px solid #EAEDED;
+    height: 100vh;
+}
+
+.card-header{
+    border-bottom: 2px solid #EAEDED;
+    font-size: 3vw;
+    font-family: monospace;
+    padding: 1vw 0 0 1vw;
+}
+
+.signup-input{
+    padding-bottom: 2%;
+}
+
+.signup-input a{
+    font-size: 2vw;
+    padding: 1vw;
+    color:black;
+    width:25%;
+    text-decoration: none;
+    display:inline-block;
+}
+
+.signup-input input{
+    font-size: 1.7vw;
+    margin-left: 1vw;
+    padding-left: 5px;
+}
+
+.signup-input button{
+    margin-left: 12.5%;
+    font-size: 1.5vw;
+    text-align: center;
+
+}
+
+.sign-up-btn a{
+    width: 8% !important;
+    font-size: 1.5vw !important;
+    padding: 5px 0 5px 0 !important;
+    color:white !important;
+}
+
+.err-msg a{
+    color: #FF5733;
+    width: 55%;
+    text-align:right;
+}
+
+.fieldError{
+    border-color:#FF5733;
+}
+

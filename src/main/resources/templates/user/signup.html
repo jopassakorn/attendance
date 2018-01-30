@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<css th:include="common/css :: css"></css>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class=" col-sm-12 col-lg-12">
+    <section class="top-banner">
+        &#8759;Time Attendance
+    </section>
+
+    <section class="signup-msg">
+        Please contact admin for create account
+    </section>
+    <p th:text="${adminEmail}" class="txt-center font-4vw mg-top5"></p>
+    <p class="txt-center font-4vw mg-top5"><a href="/login" type="button" class="btn btn-lg btn-info">Return</a></p>
+</div>
+</body>
+</html>

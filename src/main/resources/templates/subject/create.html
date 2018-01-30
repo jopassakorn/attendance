@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
+
+    <div class="col-md-3 sidebar-info">
+        <label>All subject in Attendance Application</label>
+        <p th:if="${#lists.size(subejectList)} == 0">There's no section available in this semester</p>
+        <ul class="list-group" th:each="subject : ${subejectList}">
+            <li class="list-group-item" th:text="${subject.name}">Cras justo odio</li>
+        </ul>
+    </div>
+
+    <div class="col-md-9">
+        <div class="subject-create">
+            <p style="font-size: 3vw;">Create new subject.</p>
+            <form th:action="@{/subject/create}" th:object="${subjectAddForm}" method="post">
+
+                    <p><label>Code: </label>
+                    <input type="text" placeholder="Number 7 digits" th:field="*{code}" th:class="${#fields.hasErrors('code')}? fieldError"></p>
+
+                <p class="err-msg"><a th:if="${#fields.hasErrors('code')}" th:errors="*{code}">err-msg</a></p>
+
+                    <p><label>Subject name: </label>
+                    <input type="text" th:field="*{name}" th:class="${#fields.hasErrors('name')}? fieldError"></p>
+
+                <p class="txt-center err-msg"><a th:if="${#fields.hasErrors('name')}" th:errors="*{name}">err-msg</a></p>
+
+                    <p><label>Department: </label>
+                        <input type="text" th:field="*{department}" th:class="${#fields.hasErrors('department')}? fieldError"></p>
+
+                <p class="txt-center err-msg"><a th:if="${#fields.hasErrors('department')}" th:errors="*{department}">err-msg</a></p>
+
+                    <p><label>Faculty: </label>
+                        <input type="text" th:field="*{faculty}" th:class="${#fields.hasErrors('faculty')}? fieldError"></p>
+
+                <p class="txt-center err-msg"><a th:if="${#fields.hasErrors('faculty')}" th:errors="*{faculty}">err-msg</a></p>
+                <span><button class="btn btn-md btn-info">Submit</button><a href="/subject/list" class="btn btn-md btn-warning">Return</a></span>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

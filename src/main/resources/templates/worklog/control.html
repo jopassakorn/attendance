@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
+    <h3 style="margin-left: 5vw;">Attendance application control panel</h3><br>
+    <h4 style="margin-left: 5vw;">Fingerprint scanner control panel</h4>
+    <div class="date-box">
+        <p>Current semester: <a th:text="${currentSemester.semester} + '/' + ${currentSemester.year}"></a></p>
+        <p>Started date: <a th:text="${currentSemester.started.year + 1900} + '/' + ${currentSemester.started.month + 1} + '/' + ${currentSemester.started.date}"></a>
+            and Ended date: <a th:text="${currentSemester.ended.year + 1900} + '/' + ${currentSemester.ended.month + 1} + '/' + ${currentSemester.ended.date}"></a></p>
+    </div>
+    <div class="date-box">
+        <form th:action="@{/worklog/semester/update}" th:object="${semesterlogAddForm}">
+            <p>Adjust next semester period: <a th:text="${nextSemester} + '/' + ${nextYear}"></a></p>
+            <p>Started date: <input type="date" th:field="*{started}"></p>
+            <p>Ended date: <input type="date" th:field="*{ended}"></p>
+            <input type="submit" class="btn btn-md btn-primary">
+            <p>Note! that you will not be able to edit when the semester start</p>
+        </form>
+    </div>
+
+    <h4 style="margin-left: 5vw;">Fingerprint scanner control panel</h4>
+
+    <div class="date-box">
+        <form th:action="@{/worklog/fingerprint/edit}" th:object="${fingerprintAddForm}">
+            <p>Adjust fingerprint room: </p>
+            <p>Fingerprint:<select name="room" th:field="*{id}">
+                <option th:each="fingerprint : ${fingerprintList}" th:value="${fingerprint.id}"
+                        th:text="${fingerprint.fingerprintId}" >Volvo</option>
+            </select></p>
+            <p>Room: <input type="text" th:field="*{room}"></p>
+            <input type="submit" class="btn btn-md btn-primary" value="submit">
+        </form>
+    </div>
+
+    <div class="date-box">
+        <form th:action="@{/worklog/fingerprint/create}" th:object="${fingerprintAddForm}">
+            <p>Add new fingerprint</p>
+            <p>Fingerprint name: <input type="text" th:field="*{fingerprintId}"></p>
+            <p>Room:  <input type="text" th:field="*{room}"></p>
+            <input type="submit" class="btn btn-md btn-primary">
+        </form>
+    </div>
+</div>
+</body>
+</html>

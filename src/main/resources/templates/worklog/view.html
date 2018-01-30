@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
+    <p class="txt-center font-size-4vw">Work log in Attendance Application of
+    <br><a th:text="${user.firstName} + ' ' + ${user.lastName}"></a>
+         </p>
+    <p><a style="margin-left: 6vw;" th:text="${semester}"> </a>
+    <a class="btn btn-md btn-info" th:href="@{/worklog/pdf/} + ${userId}" style="float:right;margin-right: 6vw; margin-bottom: 1vh;">PDF</a></p>
+        <div class="container">
+            <table class="table table-striped">
+                <tr>
+                    <th>Date</th>
+                    <th>Class</th>
+                    <th>Status:</th>
+                    <th>Clock in time:</th>
+                    <th>Late min:</th>
+
+                </tr>
+                <tr th:each="worklog : ${worklogList}">
+                    <td th:text="${worklog.date.year + 1900} + '-' + ${worklog.date.month} + '-' + ${worklog.date.date}"></td>
+                    <td th:text="${workTimeMap[worklog.date.day - 1]}"></td>
+                    <td><a th:text="${worklog.status}"></a></td>
+                    <td th:text="${worklog.clockInTime}"></td>
+                    <td th:text="${lateMinMap[worklog.id]}"></td>
+                   </tr>
+            </table>
+            <p style="font-size:1.5vw; float:right;">Total ongoing: <a th:text="' ' + ${workResult[0]}"></a> Total on-time:
+            <a th:text=" ' ' + ${workResult[2]}"></a> Total late:<a th:text="' ' + ${workResult[1]}"></a></p>
+    <script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/js/subject.js"></script>
+    </div>
+</div>
+</body>
+</html>

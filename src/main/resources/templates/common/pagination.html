@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:fragment='pagination'>
+    <ul class='pagination pagination-centered'>
+        <li th:class="${page.first} ? 'disabled':''" style="display:inline">
+            <span th:if="${page.first}">First</span>
+            <a th:if="${not page.first}" th:href="@{${url}(page=0)}">First</a>
+        </li>
+        <li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline">
+            <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+            <a th:if='${i}!=${page.number}' th:href="@{'/users'(page=${i})}">
+                <span th:text='${i+1}'>1</span>
+            </a>
+        </li>
+        <li th:class="${page.last} ? 'disabled':''" style="display:inline">
+            <span th:if="${page.last}">Last</span>
+            <a th:if="${not page.last}" th:href="@{${url}(page=(${page.totalPages}-1))}">Last</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

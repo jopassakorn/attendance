@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
+    <p class="txt-center font-size-4vw">Your section in this semster in Attendance Application</p>
+    <div th:unless="${subjectList} != null">
+        <div class="container">
+            <table class="table table-striped" style="overflow-x:auto;">
+                <tr>
+                    <th>Subject</th>
+                    <th>Lecturer</th>
+                    <th>Section begin</th>
+                    <th>Section Ended</th>
+                    <th>Start time</th>
+                    <th>Day</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr th:each="section : ${sections}">
+                    <td th:text="${section.subject.name}"></td>
+                    <td th:text="${section.user.firstName}"></td>
+                    <td th:text="${section.started.year} + 1900 + '-' + ${section.started.month + 1} + '-' + ${section.started.date}"></td>
+                    <td th:text="${section.ended.year} + 1900 + '-' + ${section.ended.month + 1} + '-' + ${section.ended.date}"></td>
+                    <td th:text="${hourList[section.id]}"></td>
+                    <td th:text="${dayList[section.day]}"></td>
+                    <td><a class="sectionDelTd" th:href="@{/sectionlog/view/} + ${section.id}"
+                           th:if="${(isAdmin == true) || (section.userId == userId)}" class="btn btn-xs btn-info delete-subject-btn">View</a></td>
+                    <td><a class="sectionDelTd" th:value="${section.id}" class="btn btn-xs btn-warning delete-section-btn">Delete</a></td>
+                </tr>
+            </table>
+            <div style="float:right" th:include="common/pagination :: pagination"></div>
+            <a href="/section/create" class="btn btn-md btn-info">Create new section</a>
+            <a class="btn btn-md btn-danger" th:href="@{/sectionlog/pdf/current/} + ${userId}" th:unless="${sections} == null">PDF</a>
+        </div>
+    </div>
+    <p class="txt-center font-size-4vw">Your past section in Attendance Application</p>
+    <div class="container">
+        <table class="table table-striped" style="overflow-x:auto;">
+            <tr>
+                <th>Subject</th>
+                <th>Lecturer</th>
+                <th>Section begin</th>
+                <th>Section Ended</th>
+                <th>Start time</th>
+                <th>Day</th>
+                <th></th>
+            </tr>
+            <tr th:each="sections : ${pasSections}">
+                <td th:text="${sections.subject.name}"></td>
+                <td th:text="${sections.user.firstName}"></td>
+                <td th:text="${sections.started.year} + 1900 + '-' + ${sections.started.month + 1} + '-' + ${sections.started.date}"></td>
+                <td th:text="${sections.ended.year} + 1900 + '-' + ${sections.ended.month + 1} + '-' + ${sections.ended.date}"></td>
+                <td th:text="${pastHourList[sections.id]}"></td>
+                <td th:text="${dayList[sections.day]}"></td>
+                <td><a class="sectionDelTd" th:href="@{/sectionlog/view/} + ${sections.id}"
+                       th:if="${(isAdmin == true) || (section.userId == userId)}" class="btn btn-xs btn-info delete-subject-btn">View</a></td>
+            </tr>
+        </table>
+        <div style="float:right" th:include="common/pagination :: pagination"></div>
+        <a class="btn btn-md btn-danger" th:href="@{/sectionlog/pdf/current/} + ${userId}" th:unless="${pastSection} == null">PDF</a>
+    </div>
+    <script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/js/section.js"></script>
+</div>
+</body>
+</html>

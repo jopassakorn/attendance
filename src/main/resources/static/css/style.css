@@ -1,0 +1,58 @@
+a {
+    color:black;
+}
+
+a:hover {
+    color:black;
+    text-decoration: none;
+}
+
+.ml100 {
+    margin-left: 100px;
+}
+
+.mt20{margin-top: 20px;}
+
+.wd40{
+    width: 40%;
+}
+
+.wd70{
+    width: 70%;
+}
+
+.fr{
+    float:right;
+}
+
+.ta-right{
+    text-align: right;
+
+}
+
+.ml20{
+    margin-left: 20px;
+}
+
+.sky-wal{
+    background-image: url("/img/sky-wallpaper.jpg");
+    height: 100vh;
+}
+
+.pos-ab{
+    position: absolute;
+}
+
+.txt-center{
+    text-align: center;
+}
+
+
+.font-4vw{
+    font-size: 4vw;
+}
+
+.mg-top5{
+    margin-top: 5px;
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <css th:include="common/css :: css"></css>
+</head>
+<body>
+<header th:include="shared/header :: header"></header>
+<div th:if="${isRmutk}" layout:fragment="main">
+    <!-- Page content goes here !-->
+</div>
+<div th:unless="${isRmutk}" layout:fragment="non-rmutk">
+    <p class="txt-center welcome"><a>Welcome to RMUTK Time Attendance <br><a th:text="${googleUser.givenName} + ' ' + ${googleUser.familyName}"></a></a></p>
+    <div id="nonUserModal" class="modal">
+        <div class="modal-content">
+            <p>Please login with RMUTK Email</p>
+            <a class="btn btn-md btn-default" id="close" style="float:right;margin-left:0.5vw">Dismiss</a>
+            <a class="btn btn-md btn-default" href="/logout" style="float: right;">Log out</a>
+            </div>
+    </div>
+</div>
+<script th:inline="javascript">
+$(function(){
+        var message = [[${isRmutkUser}]];
+        if(message == false){
+            $("#nonUserModal").css("display","block");
+        }
+
+        $(window).click(function(e){
+            if($(e.target).attr('class') == "modal"){
+                $(".modal").css("display","none");
+            }
+        });
+
+        $("#close").click(function(){
+            $(".modal").css("display","none");
+        });
+
+});
+</script>
+</body>
+</html>

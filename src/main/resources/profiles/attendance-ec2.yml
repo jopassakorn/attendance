@@ -1,0 +1,55 @@
+spring:
+  profile: local
+
+spring.datasource:
+  driverClassName: com.mysql.jdbc.Driver
+  url: jdbc:mysql://MYSQL_PATH:3306/attendance?useUnicode=true&characterEncoding=UTF-8
+  username: MYSQL_USERNAME
+  password: MYSQL_PASSAWORD
+  connection-test-query: SELECT 1
+  test-while-idle: true
+  test-on-borrow: true
+  validation-interval: 10000
+  log-validation-errors: true
+  validation-query: SELECT 1
+
+spring.jpa:
+  database: MYSQL
+  show-sql: true
+
+spring.jpa.hibernate:
+  dialect: org.hibernate.dialect.MySQL5Dialect
+  naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  ddl-auto: update
+
+spring.thymeleaf:
+  mode: LEGACYHTML5
+  cache: false
+  encoding: UTF-8
+
+attendance:
+  jasper:
+    path: JASPER_PATH
+    color:
+      minusnumber: FF0000
+
+flyway:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://MYSQL_PATH:3306/attendance?useUnicode=true&characterEncoding=UTF-8
+  username: MYSQL_USERNAME
+  password: MYSQL_PASSAWORD
+
+security:
+  oauth2:
+    client:
+      clientId: GOOGLE_CLIENT_ID
+      clientSecret: GOOGLE_SECRET_ID
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo

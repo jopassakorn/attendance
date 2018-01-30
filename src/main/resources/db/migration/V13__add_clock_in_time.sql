@@ -1,0 +1,1 @@
+ALTER TABLE section_log ADD `clock_in_sec` INT(11) NOT NULL DEFAULT '0' AFTER `work_date`;
