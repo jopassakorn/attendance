@@ -5,7 +5,7 @@ spring.datasource:
   driverClassName: com.mysql.jdbc.Driver
   url: jdbc:mysql://MYSQL_PATH:3306/attendance?useUnicode=true&characterEncoding=UTF-8
   username: MYSQL_USERNAME
-  password: MYSQL_PASSAWORD
+  password: MYSQL_PASSWORD
   connection-test-query: SELECT 1
   test-while-idle: true
   test-on-borrow: true
@@ -37,7 +37,7 @@ flyway:
   driver: com.mysql.jdbc.Driver
   url: jdbc:mysql://MYSQL_PATH:3306/attendance?useUnicode=true&characterEncoding=UTF-8
   username: MYSQL_USERNAME
-  password: MYSQL_PASSAWORD
+  password: MYSQL_PASSWORD
 
 security:
   oauth2:
