@@ -7,7 +7,10 @@ import com.attendance.domain.repository.SectionlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
@@ -79,7 +82,25 @@ public class SectionlogService extends AppService {
                 sectionlog.setSectionId(sectionId);
                 sectionlog.setWorkDate(Date.from(localStartDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
                 sectionlogRepository.save(sectionlog);
-            } else{
+            }else if(localStartDate.isEqual(today)){
+                LocalTime timePoint = LocalTime.now();
+                LocalTime sixPM = LocalTime.parse("17:55:00");
+                if(timePoint.isBefore(sixPM)){
+                    Sectionlog sectionlog = new Sectionlog();
+                    sectionlog.setStatus("waiting");
+                    sectionlog.setClockInSec(0);
+                    sectionlog.setSectionId(sectionId);
+                    sectionlog.setWorkDate(Date.from(localStartDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    sectionlogRepository.save(sectionlog);
+                }else{
+                    Sectionlog sectionlog = new Sectionlog();
+                    sectionlog.setStatus("absent");
+                    sectionlog.setClockInSec(0);
+                    sectionlog.setSectionId(sectionId);
+                    sectionlog.setWorkDate(Date.from(localStartDate.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    sectionlogRepository.save(sectionlog);
+                }
+            }else{
                 Sectionlog sectionlog = new Sectionlog();
                 sectionlog.setStatus("holiday");
                 sectionlog.setClockInSec(0);
