@@ -6,7 +6,7 @@ server:
 
 spring.datasource:
   driverClassName: com.mysql.jdbc.Driver
-  url: jdbc:mysql:///attendance?useUnicode=true&characterEncoding=UTF-8
+  url: jdbc:mysql://:3306/attendance?useUnicode=true&characterEncoding=UTF-8
   username:
   password:
   connection-test-query: SELECT 1
