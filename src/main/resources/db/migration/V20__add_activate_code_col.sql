@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD `activated_code` INT(7) NOT NULL AFTER `activated`;

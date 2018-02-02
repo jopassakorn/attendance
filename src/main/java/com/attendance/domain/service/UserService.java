@@ -38,5 +38,5 @@ public class UserService extends AppService{
 
     public void saveRole(Role role){roleRepository.save(role);}
 
-    public User fingByFinger(String finger){ return userRepository.findByFinger(finger);}
+    public User findByAcCode(int activatedCode){ return userRepository.findByActivatedCode(activatedCode);}
 }

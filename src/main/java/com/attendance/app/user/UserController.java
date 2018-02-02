@@ -57,11 +57,11 @@ public class UserController {
         User user = userService.findByEmail(googleUser.getEmail());
         if(!user.getActivated()) {
             Random random = new Random();
-            String acCode = String.format("%04d", random.nextInt(10000));
-            if (userService.fingByFinger(acCode) != null) {
-                acCode = String.format("%04d", random.nextInt(10000));
+            int acCode = (int)(Math.random() * 9000) + 999;
+            while(userService.findByAcCode(acCode) != null) {
+                acCode = (int)(Math.random() * 9000) + 999;
             }
-            user.setFinger(acCode);
+            user.setActivatedCode(acCode);
             userService.saveUser(user);
             modelAndView.addObject("activatedCode", acCode);
             modelAndView.addObject("fingerprintLocation", fingerprintService.findOneById("pi-server").getRoom());

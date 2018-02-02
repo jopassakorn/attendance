@@ -19,6 +19,7 @@ public class User {
     private String email;
     private String finger;
     private boolean activated;
+    private int activatedCode;
 
     private List<Section> sections;
 
@@ -73,4 +74,12 @@ public class User {
     public boolean getActivated(){ return activated;}
 
     public void setActivated(boolean activated){ this.activated = activated;}
+
+    public int getActivatedCode() {
+        return activatedCode;
+    }
+
+    public void setActivatedCode(int activatedCode) {
+        this.activatedCode = activatedCode;
+    }
 }
