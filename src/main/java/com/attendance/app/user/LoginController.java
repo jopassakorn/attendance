@@ -1,6 +1,7 @@
 package com.attendance.app.user;
 
 import com.attendance.config.oauth2.GoogleUser;
+import com.attendance.domain.entity.Activated;
 import com.attendance.domain.entity.Section;
 import com.attendance.domain.entity.User;
 import com.attendance.domain.entity.Worklog;
@@ -49,6 +50,9 @@ public class LoginController {
     @Autowired
     FingerprintService fingerprintService;
 
+    @Autowired
+    ActivatedService activatedService;
+
     @RequestMapping(value = "user",method = RequestMethod.GET)
     @ResponseBody
     public Principal user(Principal user){
@@ -68,17 +72,18 @@ public class LoginController {
             Map<String, Object> map = objectMapper.convertValue(detail, Map.class);
             GoogleUser googleUser = GoogleUser.fromUserInfoMap(map);
             User user_info = userService.findByEmail(googleUser.getEmail());
+            List<Activated> falseActivatedList = activatedService.getFalseActivatedList(user_info);
             if (user_info == null) {
                 modelAndView.setViewName("shared/main");
                 modelAndView.addObject("isRmutkUser", false);
                 return modelAndView;
-            } else if (!user_info.getActivated()) {
+            } else if (falseActivatedList.size() != 0) {
                 modelAndView.addObject("isActivated", false);
-            }else if(user_info.getActivated()){
+            }else if(falseActivatedList.size() == 0){
                 modelAndView.addObject("isActivated",true);
             }
             List<Worklog> worklogList = worklogService.getAllCurrentWorklogByUserId(user_info.getId());
-            if(worklogList.size() == 0 && user_info.getActivated()){
+            if(worklogList.size() == 0 && falseActivatedList.size() == 0){
                 worklogService.generateWorklog(new Date(),user_info.getId());
                 modelAndView.addObject("welcomeModal",true);
             }

@@ -1,13 +1,11 @@
 package com.attendance.app.worklog;
 
 import com.attendance.domain.bean.JasperPdfModelBean;
-import com.attendance.domain.entity.Fingerprint;
-import com.attendance.domain.entity.Semesterlog;
-import com.attendance.domain.entity.User;
-import com.attendance.domain.entity.Worklog;
+import com.attendance.domain.entity.*;
 import com.attendance.domain.repository.SemesterlogRepository;
 import com.attendance.domain.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +38,9 @@ public class WorklogController {
 
     @Autowired
     FingerprintService fingerprintService;
+
+    @Autowired
+    ActivatedService activatedService;
 
     @RequestMapping("/view/{id}")
     public ModelAndView view(@PathVariable("id") int id, ModelAndView modelAndView, Principal principal){
@@ -92,6 +93,15 @@ public class WorklogController {
         fingerprint.setFingerprintId(fingerprintAddForm.getFingerprintId());
         fingerprint.setRoom(fingerprintAddForm.getRoom());
         fingerprintService.save(fingerprint);
+        Fingerprint fingerprint1 = fingerprintService.findOneById(fingerprint.getFingerprintId());
+        List<User> userList = userService.findAll();
+        for(User user : userList){
+            Activated activated = new Activated();
+            activated.setFingerprintId(fingerprint1.getId());
+            activated.setActivatedStatus(false);
+            activated.setUserId(user.getId());
+            activatedService.save(activated);
+        }
         modelAndView.setViewName("redirect:/worklog/control");
         return modelAndView;
     }

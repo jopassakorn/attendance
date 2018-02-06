@@ -1,6 +1,7 @@
 package com.attendance.app.user;
 
 import com.attendance.config.oauth2.GoogleUser;
+import com.attendance.domain.entity.Activated;
 import com.attendance.domain.entity.Section;
 import com.attendance.domain.entity.User;
 import com.attendance.domain.entity.Worklog;
@@ -46,6 +47,9 @@ public class UserController {
     @Autowired
     WorklogService worklogService;
 
+    @Autowired
+    ActivatedService activatedService;
+
     @RequestMapping("/reg_finger")
     public ModelAndView registerfinger(ModelAndView modelAndView, Principal principal){
         modelAndView.setViewName("/user/activate");
@@ -55,7 +59,8 @@ public class UserController {
         Map<String, Object> map = objectMapper.convertValue(detail, Map.class);
         GoogleUser googleUser = GoogleUser.fromUserInfoMap(map);
         User user = userService.findByEmail(googleUser.getEmail());
-        if(!user.getActivated()) {
+        List<Activated> falseActivatedList = activatedService.getFalseActivatedList(user);
+        if(falseActivatedList.size() > 0) {
             Random random = new Random();
             int acCode = (int)(Math.random() * 9000) + 999;
             while(userService.findByAcCode(acCode) != null) {
@@ -64,7 +69,7 @@ public class UserController {
             user.setActivatedCode(acCode);
             userService.saveUser(user);
             modelAndView.addObject("activatedCode", acCode);
-            modelAndView.addObject("fingerprintLocation", fingerprintService.findOneById("pi-server").getRoom());
+            modelAndView.addObject("falseActivatedList", falseActivatedList);
         }else{
             modelAndView.setViewName("/user/home");
         }

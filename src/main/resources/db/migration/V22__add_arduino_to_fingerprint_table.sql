@@ -1,0 +1,1 @@
+INSERT INTO `fingerprint` (`id`, `fingerprint_id`, `room`) VALUES ('2', 'arduino', 'R 907');

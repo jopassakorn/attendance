@@ -143,7 +143,7 @@ public class SectionController {
             FieldError error = new FieldError("sectionAddForm", "day", "There is section take room this day! please change to another room or another day");
             bindingResult.addError(error);
         }
-        if (!sectionlogService.isDateMatchDay(sdf.parse(sectionAddForm.getStarted()), sectionAddForm.getDay())) {
+        if (!sectionlogService.isDateMatchDay(sdf.parse(sectionAddForm.getStarted()),sdf.parse(sectionAddForm.getEnded()), sectionAddForm.getDay())) {
             FieldError error = new FieldError("sectionAddForm", "day", "Please match day with the started date!");
             bindingResult.addError(error);
         }

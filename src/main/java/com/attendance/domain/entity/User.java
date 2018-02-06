@@ -18,7 +18,6 @@ public class User {
     private String lastName;
     private String email;
     private String finger;
-    private boolean activated;
     private int activatedCode;
 
     private List<Section> sections;
@@ -70,10 +69,10 @@ public class User {
 
     public void setFinger(String finger){this.finger = finger;}
 
-    @Column(name = "activated")
-    public boolean getActivated(){ return activated;}
-
-    public void setActivated(boolean activated){ this.activated = activated;}
+//    @Column(name = "activated")
+//    public boolean getActivated(){ return activated;}
+//
+//    public void setActivated(boolean activated){ this.activated = activated;}
 
     public int getActivatedCode() {
         return activatedCode;

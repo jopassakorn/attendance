@@ -24,6 +24,8 @@ public class UserService extends AppService{
     @Autowired
     RoleRepository roleRepository;
 
+    public List<User> findAll(){return userRepository.findAll();}
+
     public Page<User> findAll(Pageable pageable){return userRepository.findAll(pageable);}
 
     public User findOne(int id){return userRepository.findOne(id);}

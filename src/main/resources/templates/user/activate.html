@@ -9,8 +9,7 @@
 <body>
 <div class="container" layout:fragment="main" th:remove="tag">
     <h3 class="txt-center">Please insert this code <a th:text="${activatedCode}"> </a> in Fingerprint scanner at
-        <a th:text="${fingerprintLocation}"></a> and register your fingerprint to server database.</h3>
-
+        <a th:each="falseActivated : ${falseActivatedList}" th:text="${falseActivated.fingerprint.room} + ','"></a> and enroll your fingerprint.</h3>
 </div>
 </body>
 </html>

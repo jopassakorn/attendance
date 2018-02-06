@@ -1,7 +1,11 @@
 package com.attendance.domain.component;
 
 import com.attendance.config.oauth2.GoogleUser;
+import com.attendance.domain.entity.Activated;
+import com.attendance.domain.entity.Fingerprint;
+import com.attendance.domain.service.ActivatedService;
 import com.attendance.domain.service.AppService;
+import com.attendance.domain.service.FingerprintService;
 import com.attendance.domain.service.UserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -25,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.net.URISyntaxException;
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +42,12 @@ public class ControllerAspect {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    FingerprintService fingerprintService;
+
+    @Autowired
+    ActivatedService activatedService;
 
     @Before("execution(* com.attendance.app.*.*Controller.*(..))")
     public void invokeBefore(JoinPoint joinPoint) throws URISyntaxException {
@@ -69,6 +80,14 @@ public class ControllerAspect {
         user.setFirstName(googleUser.getGivenName());
         user.setLastName(googleUser.getFamilyName());
         userService.saveUser(user);
+        List<Fingerprint> fingerprintList = fingerprintService.getAll();
+        for(Fingerprint fingerprint : fingerprintList){
+            Activated activated = new Activated();
+            activated.setUserId(user.getId());
+            activated.setActivatedStatus(false);
+            activated.setFingerprintId(fingerprint.getId());
+            activatedService.save(activated);
+        }
     }
 
     private void setIsLogin(ModelAndView modelAndView, GoogleUser googleUser) throws URISyntaxException {

@@ -130,8 +130,8 @@ public class SectionlogService extends AppService {
 
     public List<Sectionlog> findAllBySectionId(int sectionId){ return sectionlogRepository.findAllBySectionId(sectionId);}
 
-    public boolean isDateMatchDay(Date startDate,int day){
-        if((startDate.getDay() - 1) == day){
+    public boolean isDateMatchDay(Date startDate,Date endDate,int day){
+        if((startDate.getDay() - 1) == day && (endDate.getDay() - 1) == day){
             return true;
         }else {
             return false;
