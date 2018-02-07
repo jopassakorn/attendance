@@ -120,22 +120,24 @@ public class ExportPdfService extends AppService {
             allSectionPdfForms.add(allSectionPdfForm);
             List<Sectionlog> sectionlogs = sectionlogRepository.findAllBySectionId(section.getId());
             for(Sectionlog sectionlog : sectionlogs){
-                AllSectionlogPdfForm allSectionlogPdfForm = new AllSectionlogPdfForm();
-                allSectionlogPdfForm.setDate(format1.format(sectionlog.getWorkDate()).toString());
-                allSectionlogPdfForm.setLateMin(getLateMinutes(section.getSecStarted(),sectionlog.getClockInSec()));
-                allSectionlogPdfForm.setStatus(sectionlog.getStatus());
-                allSectionlogPdfForm.setClassName(section.getSubject().getName());
-                allSectionlogPdfForms.add(allSectionlogPdfForm);
                 if(sectionlog.getStatus().equals("waiting")){
                     result[0] += 1;
-                }else if(sectionlog.getStatus().equals("ontime")){
-                    result[2] += 1;
-                    result[4] += 1;
-                }else if(sectionlog.getStatus().equals("late")){
-                    result[1] += 1;
-                    result[4] += 1;
-                }else if(sectionlog.getStatus().equals("absent")){
-                    result[3] += 1;
+                }else{
+                    AllSectionlogPdfForm allSectionlogPdfForm = new AllSectionlogPdfForm();
+                    allSectionlogPdfForm.setDate(format1.format(sectionlog.getWorkDate()).toString());
+                    allSectionlogPdfForm.setLateMin(getLateMinutes(section.getSecStarted(),sectionlog.getClockInSec()));
+                    allSectionlogPdfForm.setStatus(sectionlog.getStatus());
+                    allSectionlogPdfForm.setClassName(section.getSubject().getName());
+                    allSectionlogPdfForms.add(allSectionlogPdfForm);
+                    if(sectionlog.getStatus().equals("ontime")){
+                        result[2] += 1;
+                        result[4] += 1;
+                    }else if(sectionlog.getStatus().equals("late")){
+                        result[1] += 1;
+                        result[4] += 1;
+                    }else if(sectionlog.getStatus().equals("absent")) {
+                        result[3] += 1;
+                    }
                 }
             }
         }
