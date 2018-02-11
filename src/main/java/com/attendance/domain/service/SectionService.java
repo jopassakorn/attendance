@@ -23,6 +23,9 @@ public class SectionService extends AppService{
         Date today = new Date();
         Section section;
         int day = today.getDay() - 1;
+        if(day == -1){
+            day = 6;
+        }
         int count;
         int hour;
         if(today.getHours() < 12){
