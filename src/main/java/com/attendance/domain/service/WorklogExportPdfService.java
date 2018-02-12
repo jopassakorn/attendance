@@ -8,7 +8,6 @@ import com.attendance.domain.repository.SectionRepository;
 import com.attendance.domain.repository.SectionlogRepository;
 import com.attendance.domain.repository.SemesterlogRepository;
 import com.attendance.domain.repository.WorklogRepository;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -67,7 +66,7 @@ public class WorklogExportPdfService extends AppService{
         for (User user : userList) {
             AllUserWorklogPdfForm bean = new AllUserWorklogPdfForm();
             bean.setName(user.getFirstName() + ' ' + user.getLastName());
-            List<Worklog> worklogList = new VirtualFlow.ArrayLinkedList<>();
+            List<Worklog> worklogList = new ArrayList<>();
 
             if (started != null && ended != null) {
                 worklogList = worklogRepository.findAllByUserIdAndStartDateAndEnddate(user.getId(), started, ended);
