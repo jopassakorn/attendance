@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="allsection_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3b711e7e-99b7-4cf1-bcca-dbc3b81ea532">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="jasperPath" class="java.lang.String">
+		<defaultValueExpression><![CDATA["src/main/resources/jasper"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emptyDataSource" class="net.sf.jasperreports.engine.JRDataSource">
+		<defaultValueExpression><![CDATA["src/main/resources/jasper"]]></defaultValueExpression>
+	</parameter>
+	<field name="totalLate" class="java.lang.Integer"/>
+	<field name="totalOntime" class="java.lang.Integer"/>
+	<field name="totalOngoing" class="java.lang.Integer"/>
+	<field name="totalAbsent" class="java.lang.Integer"/>
+	<field name="totalPresent" class="java.lang.Integer"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="semesterYear" class="java.lang.String"/>
+	<field name="started" class="java.lang.String"/>
+	<field name="ended" class="java.lang.String"/>
+	<field name="subjectName" class="java.lang.String"/>
+	<field name="isSemesterReport" class="java.lang.Boolean"/>
+	<field name="sectionlogPdfForm" class="java.util.ArrayList"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="179" y="0" width="213" height="30" uuid="5afc4841-fec0-49b4-96d0-a94a68b2860a"/>
+				<text><![CDATA[Attendance Application Users Section Report]]></text>
+			</staticText>
+			<frame>
+				<reportElement key="" x="214" y="30" width="156" height="30" uuid="4abd79f0-7880-4594-8699-533db8b9e8a1">
+					<printWhenExpression><![CDATA[$F{isSemesterReport}]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement x="1" y="-1" width="100" height="30" uuid="be90a7a5-56c9-49b7-86c5-ebb055ac8351"/>
+					<text><![CDATA[Semester:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="57" y="0" width="99" height="30" uuid="b9122a24-6a61-4f34-bad0-b11ad7209d1b"/>
+					<textFieldExpression><![CDATA[$F{semesterYear}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="194" y="30" width="196" height="40" uuid="59bd8a95-56e9-415a-95fd-0f03b92367ab">
+					<printWhenExpression><![CDATA[!$F{isSemesterReport}]]></printWhenExpression>
+				</reportElement>
+				<staticText>
+					<reportElement x="1" y="-1" width="100" height="30" uuid="cf54fe39-63c3-4329-8a8f-b35d3af637f5"/>
+					<text><![CDATA[From:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="58" y="0" width="137" height="30" uuid="ee5801d4-fc50-4a25-b691-eee347639e8c"/>
+					<textFieldExpression><![CDATA[$F{started}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="1" y="19" width="100" height="20" uuid="95a3ee51-49dd-4ab7-83e7-9981d121921a"/>
+					<text><![CDATA[To:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="57" y="20" width="138" height="20" uuid="500891d3-e39e-48ba-8379-99acad8741b5"/>
+					<textFieldExpression><![CDATA[$F{ended}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="174" splitType="Stretch">
+			<frame>
+				<reportElement x="-3" y="4" width="560" height="86" uuid="3dc8707f-7b7f-4663-bc60-f062c484392b"/>
+				<textField>
+					<reportElement x="82" y="50" width="100" height="30" uuid="79ce5f9c-7d9f-4e97-b455-51ec7144b558"/>
+					<textFieldExpression><![CDATA[$F{totalOntime}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="12" y="50" width="100" height="30" uuid="b6ec647f-9c00-4df7-9ab2-fb697459b23a"/>
+					<text><![CDATA[Total on-time:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="385" y="50" width="100" height="30" uuid="98a79d90-c578-4a15-b82c-4198b39d9c55"/>
+					<text><![CDATA[Total absent:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="446" y="50" width="100" height="30" uuid="aa9e44ec-9b5a-4253-8ffb-23866b48e39a"/>
+					<textFieldExpression><![CDATA[$F{totalAbsent}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="130" y="50" width="100" height="30" uuid="29c8f3b6-a148-446e-bdab-0583b8e85cb4"/>
+					<text><![CDATA[Total late:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="302" y="50" width="100" height="30" uuid="1681e598-c2cc-4fb4-bdd4-08e41edfca19"/>
+					<textFieldExpression><![CDATA[$F{totalPresent}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="241" y="50" width="100" height="30" uuid="7fc14338-15c5-445a-8983-989c21144043"/>
+					<text><![CDATA[Total present:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="182" y="50" width="100" height="30" uuid="4ca6c87d-0a88-4930-abc4-78ba1c8f34e0"/>
+					<textFieldExpression><![CDATA[$F{totalLate}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="62" y="9" width="205" height="30" uuid="54e5133a-cbf2-45ec-a2fd-c589c7e5d8ca"/>
+					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="12" y="9" width="100" height="30" uuid="512f6ea5-4b94-4c37-be05-c1bffb020e1f"/>
+					<text><![CDATA[Lecturer: ]]></text>
+				</staticText>
+			</frame>
+			<subreport>
+				<reportElement x="6" y="92" width="550" height="70" uuid="25f2c412-2588-49c9-a327-c75647f85bdc">
+					<printWhenExpression><![CDATA[$F{sectionlogPdfForm}.size() > 0]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="subjectName">
+					<subreportParameterExpression><![CDATA[$F{subjectName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{sectionlogPdfForm},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{jasperPath}+"/alluser/worklog_subreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

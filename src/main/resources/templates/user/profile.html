@@ -33,7 +33,7 @@
             <p>This semester(<a th:text="${thisSemester}"></a>): total workday: <a th:text="${totalCurrentWorklogs}"></a>.
                 ongoing: <a th:text="${currentWorklogResult[0]}"></a>. absent: <a th:text="${currentWorklogResult[2]}"></a>.
                 present: <a th:text="${currentWorklogResult[1]}"></a>. late: <a th:text="${currentWorklogResult[3]}"></a>. Ontime: <a th:text="${currentWorklogResult[4]}"></a>.
-                Holiday: <a th:text="${currentWorklogResult[5]}"></a>. <a th:href="@{/worklog/view/} + ${user.id}">See table.</a></p>
+                Holiday: <a th:text="${currentWorklogResult[5]}"></a>. <a th:href="@{/worklog/view/} + ${user.id}" style="color: red">See table.</a></p>
 
         </div>
 
@@ -42,9 +42,9 @@
             <p>This semester(<a th:text="${thisSemester}"></a>): total section: <a th:text="${totalCurrentSection}"></a>.
                 ongoing: <a th:text="${currentSectionResult[0]}"></a>. absent: <a th:text="${currentSectionResult[2]}"></a>.
                 present: <a th:text="${currentSectionResult[1]}"></a>. late: <a th:text="${currentSectionResult[3]}"></a>. Ontime: <a th:text="${currentSectionResult[4]}"></a>.
-                 Holiday: <a th:text="${currentSectionResult[5]}"></a>. <a th:href="@{/section/view/current/} + ${user.id}">See table.</a></p>
+                 Holiday: <a th:text="${currentSectionResult[5]}"></a>. <a th:href="@{/section/view/current/} + ${user.id}" style="color: red">See table.</a></p>
             <p>All semester: total section: <a th:text="${totalAllSection}"></a>. Ongoing: <a th:text="${allSectionResult[0]}"></a>.
-                present: <a th:text="${allSectionResult[1]}"></a>. absent: <a th:text="${allSectionResult[2]}"></a>. late: <a th:text="${allSectionResult[3]}"></a>. Ontime: <a th:text="${allSectionResult[4]}"></a>. Holiday: <a th:text="${allSectionResult[5]}"></a>. <a th:href="@{/section/view/past/} + ${user.id}">See table.</a></p>
+                present: <a th:text="${allSectionResult[1]}"></a>. absent: <a th:text="${allSectionResult[2]}"></a>. late: <a th:text="${allSectionResult[3]}"></a>. Ontime: <a th:text="${allSectionResult[4]}"></a>. Holiday: <a th:text="${allSectionResult[5]}"></a>. <a th:href="@{/section/view/past/} + ${user.id}" style="color: red">See table.</a></p>
         </div>
     </div>
 </div>

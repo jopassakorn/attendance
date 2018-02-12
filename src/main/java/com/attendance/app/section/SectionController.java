@@ -1,5 +1,6 @@
 package com.attendance.app.section;
 
+import com.attendance.domain.bean.JasperPdfModelBean;
 import com.attendance.domain.entity.*;
 import com.attendance.domain.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -44,6 +47,9 @@ public class SectionController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    SectionExportPdfService sectionExportPdfService;
 
     @RequestMapping("/view/current/{userId}")
     public ModelAndView viewcurrent(@PathVariable("userId")int userId,ModelAndView modelAndView,Principal principal,Pageable pageable){
@@ -175,5 +181,19 @@ public class SectionController {
             sectionlogService.generatedSectionlog(section.getStarted(), section.getEnded(), section.getId());
         }
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/semester/pdf")
+    public ModelAndView exportallusersectionbysemesterpdf(@RequestParam(value = "started",required = false) String started,@RequestParam(value = "ended",required = false) String ended) throws ParseException {
+        JasperPdfModelBean jasperPdfModelBean = sectionExportPdfService.getAllUserSectionPdfView(null,null);
+        return new ModelAndView(jasperPdfModelBean, new HashMap());
+    }
+
+    @RequestMapping(value = "/semester/pdf/{started}/{ended}")
+    public ModelAndView exportallusersectionbydatepdf(@PathVariable(value = "started")String started,@PathVariable(value = "ended")String ended) throws ParseException {
+        Date startedDate = new SimpleDateFormat("yyyy-MM-dd").parse(started);
+        Date endedDate = new SimpleDateFormat("yyyy-MM-dd").parse(ended);
+        JasperPdfModelBean jasperPdfModelBean = sectionExportPdfService.getAllUserSectionPdfView(startedDate,endedDate);
+        return new ModelAndView(jasperPdfModelBean, new HashMap());
     }
 }

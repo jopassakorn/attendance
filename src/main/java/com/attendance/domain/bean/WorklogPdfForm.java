@@ -11,6 +11,16 @@ public class WorklogPdfForm {
     private String lateMin;
     private String classDay;
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    private String note;
+
 
     public String getDate() {
         return date;

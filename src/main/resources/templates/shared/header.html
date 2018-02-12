@@ -18,6 +18,7 @@
             <li><a th:if="${isAdmin}" th:href="@{/worklog/control}">Control</a></li>
             <li th:if="${isLogin}" class="dropdown" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="${googleUser.givenName} + '&#9660;'">Profile</a>
                 <ul class="dropdown-menu">
+                    <li><a th:href="@{/attendance/summation}" th:if="${isAdmin}">User's result</a></li>
                     <li><a th:href="@{/user/profile/} + ${userId}" th:if="${isRmutk}">Profile</a></li>
                     <li><a th:href="@{/section/list/} + ${userId}" th:if="${isRmutk}">My Section</a></li>
                     <li><a th:href="@{/worklog/view/} + ${userId}" th:if="${isRmutk}">My Work Schedule</a></li>

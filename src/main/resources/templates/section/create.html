@@ -32,7 +32,7 @@
                     <p><label>Room:</label>
                         <select name="room" th:field="*{roomId}">
                             <option th:each="fingerprint : ${fingerprintList}" th:value="${fingerprint.id}"
-                                    th:text="${fingerprint.room}" >Volvo</option>
+                                    th:text="${fingerprint.room}" th:if="${fingerprint.fingerprintId != 'arduino'}">Volvo</option>
                         </select>
                     </p>
                     <p><label>Section start time:</label>

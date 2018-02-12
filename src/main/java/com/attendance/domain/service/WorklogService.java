@@ -34,6 +34,14 @@ public class WorklogService extends AppService{
     @Autowired
     SectionRepository sectionRepository;
 
+    public Worklog findOne(int id){
+        return worklogRepository.findOne(id);
+    }
+
+    public void save(Worklog worklog){
+        worklogRepository.save(worklog);
+    }
+
     public int[] getWorklogStatus(List<Worklog> worklogs){
         int[] result = {0,0,0,0,0,0}; // ongoing present absent late ontime
         for(Worklog worklog : worklogs){

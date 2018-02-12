@@ -16,6 +16,8 @@ import java.util.List;
 @Repository
 public interface WorklogRepository extends JpaRepository<Worklog,Integer>{
 
+    List<Worklog> findAllByUserId(int userId);
+
     @Query(value = "SELECT * FROM work_log where user_id = :userId and work_date BETWEEN :startdate and :enddate",nativeQuery = true)
     List<Worklog> findAllByUserIdAndStartDateAndEnddate(@Param("userId") int userId, @Param("startdate") Date startdate, @Param("enddate") Date enddate);
 }

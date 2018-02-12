@@ -2,6 +2,20 @@
     font-size: 4vw !important;
 }
 
+.pdf-box{
+    padding: 4vh 0;
+    float: right;
+    display: none;
+}
+
+#worlog-pdf-date{
+    display: none;
+}
+
+#section-pdf-date{
+    display:none;
+}
+
 .font-fam-curs{
     font-family: cursive;
 }

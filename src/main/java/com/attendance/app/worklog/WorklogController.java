@@ -7,13 +7,15 @@ import com.attendance.domain.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,6 +43,9 @@ public class WorklogController {
 
     @Autowired
     ActivatedService activatedService;
+
+    @Autowired
+    WorklogExportPdfService worklogExportPdfService;
 
     @RequestMapping("/view/{id}")
     public ModelAndView view(@PathVariable("id") int id, ModelAndView modelAndView, Principal principal){
@@ -113,6 +118,43 @@ public class WorklogController {
         fingerprintService.save(fingerprint);
         modelAndView.setViewName("redirect:/worklog/control");
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/semester/pdf")
+    public ModelAndView exportalluserworklogbysemesterpdf(@RequestParam(value = "started",required = false) String started,@RequestParam(value = "ended",required = false) String ended) throws ParseException {
+        JasperPdfModelBean jasperPdfModelBean = worklogExportPdfService.getWorklogBySemesterPdfView(null,null);
+        return new ModelAndView(jasperPdfModelBean, new HashMap());
+    }
+
+    @RequestMapping(value = "/semester/pdf/{started}/{ended}")
+    public ModelAndView exportalluserworklogbydatepdf(@PathVariable(value = "started")String started,@PathVariable(value = "ended")String ended) throws ParseException {
+        Date startedDate = new SimpleDateFormat("yyyy-MM-dd").parse(started);
+        Date endedDate = new SimpleDateFormat("yyyy-MM-dd").parse(ended);
+        JasperPdfModelBean jasperPdfModelBean = worklogExportPdfService.getWorklogBySemesterPdfView(startedDate,endedDate);
+        return new ModelAndView(jasperPdfModelBean, new HashMap());
+    }
+
+    @RequestMapping(value = "/edit/note/{id}", method = RequestMethod.GET)
+    public ModelAndView note(@PathVariable(value = "id") int id,ModelAndView modelAndView){
+        modelAndView.setViewName("/worklog/note");
+        modelAndView.addObject("worklog",worklogService.findOne(id));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/view/note/{id}", method = RequestMethod.GET)
+    public ModelAndView viewnote(@PathVariable(value = "id") int id,ModelAndView modelAndView){
+        modelAndView.setViewName("/worklog/note");
+        modelAndView.addObject("worklog",worklogService.findOne(id));
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/edit/note/{id}", method = RequestMethod.POST)
+    @ResponseBody
+    public void editnote(@PathVariable(value = "id") int id,@RequestParam(value = "msg") String msg){
+        Worklog worklog = worklogService.findOne(id);
+        worklog.setNote(msg);
+        worklog.setIsNoteWritten(true);
+        worklogService.save(worklog);
     }
 }
 

@@ -21,7 +21,8 @@
                     <th>Status:</th>
                     <th>Clock in time:</th>
                     <th>Late min:</th>
-
+                    <th>Note: </th>
+                    <th></th>
                 </tr>
                 <tr th:each="worklog : ${worklogList}">
                     <td th:text="${worklog.date.year + 1900} + '-' + ${worklog.date.month} + '-' + ${worklog.date.date}"></td>
@@ -29,6 +30,8 @@
                     <td><a th:text="${worklog.status}"></a></td>
                     <td th:text="${worklog.clockInTime}"></td>
                     <td th:text="${lateMinMap[worklog.id]}"></td>
+                    <td th:style="${worklog.status} == 'absent' and ${worklog.isNoteWritten} ? 'display: block' : 'display: none'"><a target="_blank" th:href="@{/worklog/view/note/} + ${worklog.id}" class="btn btn-sm btn-default">view</a></td>
+                    <td th:style="${worklog.status} == 'absent' and !${worklog.isNoteWritten} ? 'display: block' : 'display: none'"><a target="_blank" th:href="@{/worklog/edit/note/} + ${worklog.id}" class="btn btn-sm btn-default">edit</a></td>
                    </tr>
             </table>
             <p style="font-size:1.5vw; float:right;">Total ongoing: <a th:text="' ' + ${workResult[0]}"></a> Total on-time:

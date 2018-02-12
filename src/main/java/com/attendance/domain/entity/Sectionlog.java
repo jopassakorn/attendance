@@ -16,6 +16,8 @@ public class Sectionlog {
     private String finger;
     private Date workDate;
     private int clockInSec;
+    private String note;
+    private boolean isNoteWrttten;
 
     @Id
     @GeneratedValue
@@ -48,4 +50,14 @@ public class Sectionlog {
     public int getClockInSec(){return clockInSec;}
 
     public void setClockInSec(int clockInSec){ this.clockInSec = clockInSec;}
+
+    @Column(name = "note")
+    public String getNote(){return note;}
+
+    public void setNote(String note){this.note = note;}
+
+    @Column(name = "is_note_wrttten")
+    public boolean getIsNoteWritten(){ return isNoteWrttten;}
+
+    public void setIsNoteWritten(boolean isNoteWrttten){ this.isNoteWrttten = isNoteWrttten;}
 }

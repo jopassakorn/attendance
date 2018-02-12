@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div style="margin-left: 15px">
+        <h3 style="margin-left: 60px" class="txt-center">Take note for absent</h3>
+        <p style="margin-left: 70px">Work date: <a th:text="${worklog.date}"></a></p>
+        <p>Note:  <a th:text="${worklog.note}" th:if="${worklog.isNoteWritten}"></a> <input th:unless="${worklog.isNoteWritten}" type="text" style="width: 25vw" id="note-text-field"></p>
+        <a style="margin-left: 70px" class="btn btn-md btn-info" id="note-submit-btn" th:unless="${worklog.isNoteWritten}">submit</a> <a class="btn btn-md btn-danger" style="margin-left:3vw" onclick="myWindow.close()">Close</a>
+    </div>
+    <script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/js/subject.js"></script>
+    <script th:inline="javascript">
+        $(function(){
+            id = [[${worklog.id}]]
+            $("#note-submit-btn").click(function(){
+                createNote(id);
+            });
+        });
+    </script>
+</body>
+</html>

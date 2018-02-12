@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="shared/main">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
+    <div th:unless="${isNoUser}">
+        <h3 class="txt-center">Worklog Result<a id="worklog-pdf-btn" class="btn btn-md btn-danger" style="margin-right: 5vw;margin-bottom: 5vh;float: right;">PDF</a></h3>
+        <div class="pdf-box" id="worklog-pdf-box">
+            Specific date: <input type="radio" id="worklog-spec-date-radio" style="margin-left: 1 vw">
+            Semester: <input style="margin-right: 1vw" type="radio" id="worklog-semester-date-radio">
+            <a class="btn btn-default btn-sm" id="worklog-export-pdf-btn">Export pdf</a>
+            <p style="margin-top:1vh" id="worlog-pdf-date"><input type="date" id="worklog-started" style="margin-right: 1vw"><input type="date" id="worklog-ended"></p>
+        </div>
+        <div class="container">
+            <table class="table table-striped" style="overflow-x:auto;">
+                <tr>
+                    <th rowspan="2" class="txt-center" style="padding-top: 5vh">Staff name</th>
+                    <th colspan="4" class="txt-center">Status</th>
+                </tr>
+                <tr>
+                    <th class="txt-center">Ontime</th>
+                    <th class="txt-center">Late</th>
+                    <th class="txt-center">Absent</th>
+                    <th></th>
+                </tr>
+                <tr th:each="user : ${userList}">
+                    <td class="txt-center" th:text="${user.firstName} + ' ' + ${user.lastName}"></td>
+                    <td class="txt-center" th:text="${user.totalWorkOntime}"></td>
+                    <td class="txt-center" th:text="${user.totalWorkLate}"></td>
+                    <td class="txt-center" th:text="${user.totalWorkAbsent} "></td>
+                    <td><a class="btn btn-xs btn-info" th:href="@{/worklog/view/} + ${userId}">More</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <h3 class="txt-center">Section Result<a class="btn btn-md btn-danger" id="section-pdf-btn" style="margin-right: 5vw;margin-bottom: 5vh;float: right;">PDF</a></h3>
+        <div class="pdf-box" id="section-pdf-box">
+            Specific date: <input type="radio" id="section-spec-date-radio" style="margin-left: 1 vw">
+            Semester: <input style="margin-right: 1vw" type="radio" id="section-semester-date-radio">
+            <a class="btn btn-default btn-sm" id="section-export-pdf-btn">Export pdf</a>
+            <p style="margin-top:1vh" id="section-pdf-date"><input type="date" id="section-started" style="margin-right: 1vw"><input type="date" id="section-ended"></p>
+        </div>
+        <div class="container">
+            <table class="table table-striped" style="overflow-x:auto;">
+                <tr>
+                    <th rowspan="2" class="txt-center" style="padding-top: 5vh">Lecturer</th>
+                    <th colspan="4" class="txt-center">Status</th>
+                </tr>
+                <tr>
+                    <th class="txt-center">Ontime</th>
+                    <th class="txt-center">Late</th>
+                    <th class="txt-center">Absent</th>
+                    <th></th>
+                </tr>
+                <tr th:each="user : ${userList}">
+                    <td class="txt-center" th:text="${user.firstName} + ' ' + ${user.lastName}"></td>
+                    <td class="txt-center" th:text="${user.totalClassOntime}"></td>
+                    <td class="txt-center" th:text="${user.totalClassLate}"></td>
+                    <td class="txt-center" th:text="${user.totalClassAbsent} "></td>
+                    <td><a class="btn btn-xs btn-info" th:href="@{/sectionlog/all/} + ${userId}">More</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:if="${isNoUser}">
+        <h3>No user found in attendance system</h3>
+    </div>
+    <script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/js/subject.js"></script>
+</div>
+</body>
+</html>

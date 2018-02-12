@@ -18,6 +18,8 @@ public class Worklog {
     private Date date;
     private int clockInSec;
     private Time clockInTime;
+    private String note;
+    private boolean isNoteWrttten;
 
     @Id
     @GeneratedValue
@@ -55,4 +57,14 @@ public class Worklog {
     public Time getClockInTime(){return clockInTime;}
 
     public void setClockInTime(Time clockInTime){this.clockInTime = clockInTime;}
+
+    @Column(name = "note")
+    public String getNote(){return note;}
+
+    public void setNote(String note){this.note = note;}
+
+    @Column(name = "is_note_wrttten")
+    public boolean getIsNoteWritten(){ return isNoteWrttten;}
+
+    public void setIsNoteWritten(boolean isNoteWrttten){ this.isNoteWrttten = isNoteWrttten;}
 }
