@@ -16,4 +16,7 @@ public interface SectionlogRepository extends JpaRepository<Sectionlog,Integer> 
 
     List<Sectionlog> findAllBySectionId(int sectionId);
 
+    @Query(value = "select * from section_log where section_id = :sectionId and status <> 'waiting'",nativeQuery = true)
+    List<Sectionlog> findAllNoWaitingSection(@Param("sectionId") int sectionId);
+
 }

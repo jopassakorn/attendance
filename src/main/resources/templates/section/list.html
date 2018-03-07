@@ -8,16 +8,16 @@
 </head>
 <body>
 <div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
-    <p class="txt-center font-size-4vw">All section in Attendance Application</p>
+    <p class="txt-center font-size-4vw" th:text="#{L0015}">All section in Attendance Application</p>
         <div class="container">
             <table class="table table-striped" style="overflow-x:auto;">
                 <tr>
-                    <th>Subject</th>
-                    <th>Lecturer</th>
-                    <th>Section begin</th>
-                    <th>Section Ended</th>
-                    <th>Day</th>
-                    <th>Section start</th>
+                    <th th:text="#{T0012}">Subject</th>
+                    <th th:text="#{T0013}">Lecturer</th>
+                    <th th:text="#{T0014}">Section begin</th>
+                    <th th:text="#{T0015}">Section Ended</th>
+                    <th th:text="#{T0016}">Day</th>
+                    <th th:text="#{T0017}">Section start</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -31,11 +31,11 @@
                     <td><a class="sectionDelTd" th:href="@{/sectionlog/view/} + ${section.id}"
                            th:if="${(isAdmin == true) || (section.userId == userId)}" class="btn btn-xs btn-info delete-subject-btn">View</a></td>
                     <td><a class="sectionDelTd" th:value="${section.id}" th:if="${(isAdmin == true) || (section.userId == userId)}"
-                           class="btn btn-xs btn-warning delete-section-btn">Delete</a></td>
+                           class="btn btn-xs btn-warning delete-section-btn" th:text="#{B0002}">Delete</a></td>
                 </tr>
             </table>
             <div style="float:right" th:include="common/pagination :: pagination"></div>
-            <a href="/section/create" class="btn btn-md btn-info">Create new section</a>
+            <a href="/section/create" class="btn btn-md btn-info" th:text="#{B0004}">Create new section</a>
     </div>
     <script type="text/javascript" src="/js/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="/js/section.js"></script>

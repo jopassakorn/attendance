@@ -7,9 +7,7 @@ import com.attendance.domain.repository.SectionlogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -129,6 +127,8 @@ public class SectionlogService extends AppService {
     }
 
     public List<Sectionlog> findAllBySectionId(int sectionId){ return sectionlogRepository.findAllBySectionId(sectionId);}
+
+    public List<Sectionlog> findAllNoWaitingSection(int sectionId){ return sectionlogRepository.findAllNoWaitingSection(sectionId);}
 
     public boolean isDateMatchDay(Date startDate,Date endDate,int day){
         if((startDate.getDay() - 1) == day && (endDate.getDay() - 1) == day){

@@ -8,12 +8,12 @@
 </head>
 <body>
 <div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
-    <p class="txt-center" style="font-size:2.5vw;">Report of section <a th:text="${section.subject.name}"></a>
-     of <a th:text="${section.user.firstName} + ' ' + ${section.user.lastName}"></a></p>
+    <p class="txt-center" style="font-size:2.5vw;"><a th:text="#{l0028}">Report of section </a><a th:text="${section.subject.name}"></a>
+     <a th:text="#{l0031}">of</a> <a th:text="${section.user.firstName} + ' ' + ${section.user.lastName}"></a></p>
     <div>
-        <p style="margin-bottom: 3vh;"><a style="margin-left: 7vw;" th:text="'Year: ' + ${section.year} + ' Semester: ' + ${section.semester}"></a>
+        <p style="margin-bottom: 3vh;"><a th:text="#{l0030}"></a><a style="margin-left: 7vw;" th:text="${section.year} + '/' + ${section.semester}"></a>
             <a style="margin-left:7vw;" th:href="@{/section/list/} + ${userId}" th:if="${(isAdmin == true) || (section.userId == userId)}"
-               style="float:right;margin-right:7vw;" class="btn btn-warning btn-md">Return</a>
+               style="float:right;margin-right:7vw;" class="btn btn-warning btn-md" th:text="#{B0007}">Return</a>
             <a style="float:right;margin-right: 3px;" th:href="@{/sectionlog/pdf/} + ${section.id}" class="btn btn-info btn-md">PDF</a></p>
         <div class="container">
             <table class="table table-striped" style="overflow-x:auto;">

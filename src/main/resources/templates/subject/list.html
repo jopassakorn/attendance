@@ -8,19 +8,19 @@
 </head>
 <body>
 <div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
-    <p class="txt-center font-size-4vw">All Subject in Attendance Application</p>
+    <p class="txt-center font-size-4vw" th:text="#{L0003}">All Subject in Attendance Application</p>
     <div th:unless="${subjectList} != null">
-        <p style="font-size: 16px;margin-left: 80px;"><a id="create-msg">create new subject.</a>
-            <a href="/subject/create" class="btn btn-md btn-primary" type="button"> Create new Subject</a>
+        <p style="font-size: 16px;margin-left: 13vw;">
+            <a href="/subject/create" class="btn btn-md btn-primary" type="button" th:text="#{B0001}"> Create new Subject</a>
         </p>
         <div class="container">
             <table class="table table-striped">
                 <tr>
-                    <th>Code</th>
-                    <th>Subject name</th>
-                    <th>Department</th>
-                    <th>Faculty</th>
-                    <th class="td-created">Created Date</th>
+                    <th th:text="#{T0001}">Code</th>
+                    <th th:text="#{T0002}">Subject name</th>
+                    <th th:text="#{T0003}">Department</th>
+                    <th th:text="#{T0004}">Faculty</th>
+                    <th class="td-created" th:text="#{T0005}">Created Date</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -30,8 +30,8 @@
                     <td th:text="${subject.department}"></td>
                     <td th:text="${subject.faculty}"></td>
                     <td class="td-created" th:text="${subject.created.date} + '-' + ${subject.created.month + 1} + '-' + ${subject.created.year + 1900}"></td>
-                    <td><a th:value="${subject.id}" th:if="${isAdmin}" class="btn btn-xs btn-warning delete-subject-btn">Delete</a></td>
-                    <td><a th:href="@{/subject/edit/} + ${subject.id}" th:if="${isAdmin}" class="btn btn-xs btn-default edit-subject-btn">Edit</a></td>
+                    <td><a th:value="${subject.id}" th:if="${isAdmin}" class="btn btn-xs btn-warning delete-subject-btn" th:text="#{B0002}">Delete</a></td>
+                    <td><a th:href="@{/subject/edit/} + ${subject.id}" th:if="${isAdmin}" class="btn btn-xs btn-default edit-subject-btn" th:text="#{B0003}">Edit</a></td>
                 </tr>
             </table>
             <div th:include="common/pagination :: pagination"></div>

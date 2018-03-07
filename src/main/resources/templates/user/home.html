@@ -8,9 +8,9 @@
 </head>
 <body>
 <div class="container" layout:fragment="main" th:remove="tag">
-    <p class="txt-center welcome"><a>Welcome to RMUTK Attendance <br><a th:text="${googleUser.givenName} + ' ' + ${googleUser.familyName}"></a></a></p>
+    <p class="txt-center welcome"><a th:utext="#{L0002}">Welcome to RMUTK Attendance</a><br><a th:text="${googleUser.givenName} + ' ' + ${googleUser.familyName}"></a></p>
     <div th:unless="${isActivated}">
-        <p class="txt-center" style="font-size:2vw;">Your work schedule are not created yet<br>Please register your finger: <a style="color:red" href="/user/reg_finger">here</a></p>
+        <p class="txt-center" style="font-size:2vw;"><a th:utext="#{L0004}">Your work schedule are not created yet<br>Please register your finger: </a><a style="color:red" href="/user/reg_finger" th:text="#{L0005}">here</a></p>
     </div>
     <div id="welcomeModal" class="modal">
         <div class="modal-content">
@@ -21,12 +21,12 @@
         </div>
     </div>
     <div class="date-box" th:if="${isActivated}">
-        <p>Your next section: </p>
-        <div th:unless="${isNoSection}">
-            <p>Subject: <a th:text="${nextSection.subject.name}"></a></p>
-            <p>day: <a th:text="${dayMap[nextSection.day]}"></a></p>
-            <p>Time: <a th:text="${nextSectionTime}"></a></p>
-            <p>Room: <a th:text="${room}"></a></p>
+        <p th:text="#{L0006}">Your next section: </p>
+        <div th:unless="${isNoSection}" style="margin-left: 2vw">
+            <p><a th:text="#{L0006}">Subject: </a><a th:text="${nextSection.subject.name}"></a></p>
+            <p><a th:text="#{L0006}">day</a><a th:text="${dayMap[nextSection.day]}"></a></p>
+            <p><a th:text="#{L0006}">time</a><a th:text="${nextSectionTime}"></a></p>
+            <p><a th:text="#{L0006}">room</a><a th:text="${room}"></a></p>
         </div>
         <p th:if="${isNoSection}"> There's no next class. Please create new one!</p>
     </div>

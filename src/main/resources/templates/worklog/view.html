@@ -8,20 +8,20 @@
 </head>
 <body>
 <div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
-    <p class="txt-center font-size-4vw">Work log in Attendance Application of
+    <p class="txt-center font-size-4vw" th:text="#{L0013}">Work history in Attendance Application
     <br><a th:text="${user.firstName} + ' ' + ${user.lastName}"></a>
          </p>
-    <p><a style="margin-left: 6vw;" th:text="${semester}"> </a>
+    <p><a style="margin-left: 6vw;" th:text="#{L0014}">Semester</a><a style="margin-left: 0.5vw;" th:text="${semester}"></a>
     <a class="btn btn-md btn-info" th:href="@{/worklog/pdf/} + ${userId}" style="float:right;margin-right: 6vw; margin-bottom: 1vh;">PDF</a></p>
         <div class="container">
             <table class="table table-striped">
                 <tr>
-                    <th>Date</th>
-                    <th>Class</th>
-                    <th>Status:</th>
-                    <th>Clock in time:</th>
-                    <th>Late min:</th>
-                    <th>Note: </th>
+                    <th th:text="#{T0006}">Date</th>
+                    <th th:text="#{T0007}">Class</th>
+                    <th th:text="#{T0008}">Status:</th>
+                    <th th:text="#{T0009}">Clock in time:</th>
+                    <th th:text="#{T0010}">Late min:</th>
+                    <th th:text="#{T0011}">Note: </th>
                     <th></th>
                 </tr>
                 <tr th:each="worklog : ${worklogList}">
@@ -31,7 +31,7 @@
                     <td th:text="${worklog.clockInTime}"></td>
                     <td th:text="${lateMinMap[worklog.id]}"></td>
                     <td th:style="${worklog.status} == 'absent' and ${worklog.isNoteWritten} ? 'display: block' : 'display: none'"><a target="_blank" th:href="@{/worklog/view/note/} + ${worklog.id}" class="btn btn-sm btn-default">view</a></td>
-                    <td th:style="${worklog.status} == 'absent' and !${worklog.isNoteWritten} ? 'display: block' : 'display: none'"><a target="_blank" th:href="@{/worklog/edit/note/} + ${worklog.id}" class="btn btn-sm btn-default">edit</a></td>
+                    <td th:style="${worklog.status} == 'absent' and !${worklog.isNoteWritten} ? 'display: block' : 'display: none'"><a target="_blank" th:href="@{/worklog/edit/note/} + ${worklog.id}" class="btn btn-sm btn-default" th:text="#{B0003}">edit</a></td>
                    </tr>
             </table>
             <p style="font-size:1.5vw; float:right;">Total ongoing: <a th:text="' ' + ${workResult[0]}"></a> Total on-time:

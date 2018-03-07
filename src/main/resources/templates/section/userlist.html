@@ -8,17 +8,17 @@
 </head>
 <body>
 <div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
-    <p class="txt-center font-size-4vw">Your section in this semster in Attendance Application</p>
+    <p class="txt-center font-size-4vw" th:text="#{L0016}">Your section in this semster in Attendance Application</p>
     <div th:unless="${subjectList} != null">
         <div class="container">
             <table class="table table-striped" style="overflow-x:auto;">
                 <tr>
-                    <th>Subject</th>
-                    <th>Lecturer</th>
-                    <th>Section begin</th>
-                    <th>Section Ended</th>
-                    <th>Start time</th>
-                    <th>Day</th>
+                    <th th:text="#{T0012}">Subject</th>
+                    <th th:text="#{T0013}">Lecturer</th>
+                    <th th:text="#{T0014}">Section begin</th>
+                    <th th:text="#{T0015}">Section Ended</th>
+                    <th th:text="#{T0017}">Section start</th>
+                    <th th:text="#{T0016}">Day</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -30,25 +30,25 @@
                     <td th:text="${hourList[section.id]}"></td>
                     <td th:text="${dayList[section.day]}"></td>
                     <td><a class="sectionDelTd" th:href="@{/sectionlog/view/} + ${section.id}"
-                           th:if="${(isAdmin == true) || (section.userId == userId)}" class="btn btn-xs btn-info delete-subject-btn">View</a></td>
-                    <td><a class="sectionDelTd" th:value="${section.id}" class="btn btn-xs btn-warning delete-section-btn">Delete</a></td>
+                           th:if="${(isAdmin == true) || (section.userId == userId)}" class="btn btn-xs btn-info delete-subject-btn" th:text="#{B0005}">View</a></td>
+                    <td><a class="sectionDelTd" th:value="${section.id}" class="btn btn-xs btn-warning delete-section-btn" th:text="#{B0002}">Delete</a></td>
                 </tr>
             </table>
             <div style="float:right" th:include="common/pagination :: pagination"></div>
-            <a href="/section/create" class="btn btn-md btn-info">Create new section</a>
+            <a href="/section/create" class="btn btn-md btn-info" th:text="#{B0004}">Create new section</a>
             <a class="btn btn-md btn-danger" th:href="@{/sectionlog/pdf/current/} + ${userId}" th:unless="${sections} == null">PDF</a>
         </div>
     </div>
-    <p class="txt-center font-size-4vw">Your past section in Attendance Application</p>
+    <p class="txt-center font-size-4vw" th:text="#{L0017}">Your past section in Attendance Application</p>
     <div class="container">
         <table class="table table-striped" style="overflow-x:auto;">
             <tr>
-                <th>Subject</th>
-                <th>Lecturer</th>
-                <th>Section begin</th>
-                <th>Section Ended</th>
-                <th>Start time</th>
-                <th>Day</th>
+                <th th:text="#{T0012}">Subject</th>
+                <th th:text="#{T0013}">Lecturer</th>
+                <th th:text="#{T0014}">Section begin</th>
+                <th th:text="#{T0015}">Section Ended</th>
+                <th th:text="#{T0017}">Section start</th>
+                <th th:text="#{T0016}">Day</th>
                 <th></th>
             </tr>
             <tr th:each="sections : ${pasSections}">
@@ -59,7 +59,7 @@
                 <td th:text="${pastHourList[sections.id]}"></td>
                 <td th:text="${dayList[sections.day]}"></td>
                 <td><a class="sectionDelTd" th:href="@{/sectionlog/view/} + ${sections.id}"
-                       th:if="${(isAdmin == true) || (section.userId == userId)}" class="btn btn-xs btn-info delete-subject-btn">View</a></td>
+                       th:if="${(isAdmin == true) || (section.userId == userId)}" class="btn btn-xs btn-info delete-subject-btn" th:text="#{B0005}">View</a></td>
             </tr>
         </table>
         <div style="float:right" th:include="common/pagination :: pagination"></div>

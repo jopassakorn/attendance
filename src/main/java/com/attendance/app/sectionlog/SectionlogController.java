@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +34,7 @@ public class SectionlogController {
     @RequestMapping("/view/{id}")
     public ModelAndView view(@PathVariable(value = "id")int id, ModelAndView modelAndView, Principal principal){
         modelAndView.setViewName("/sectionlog/view");
-        List<Sectionlog> sectionlogList = sectionlogService.findAllBySectionId(id);
+        List<Sectionlog> sectionlogList = sectionlogService.findAllNoWaitingSection(id);
         modelAndView.addObject("sectionlogList",sectionlogList);
         modelAndView.addObject("section",sectionService.findOne(id));
         modelAndView.addObject("lateMinMap",sectionlogService.getLateMinMap(sectionlogList,sectionService.findOne(id).getSecStarted()));

@@ -23,8 +23,9 @@
             </div>
     </div>
 </div>
+<header th:include="shared/footer :: footer"></header>
 <script th:inline="javascript">
-$(function(){
+    $(function(){
         var message = [[${isRmutkUser}]];
         if(message == false){
             $("#nonUserModal").css("display","block");
@@ -39,8 +40,24 @@ $(function(){
         $("#close").click(function(){
             $(".modal").css("display","none");
         });
+    });
 
-});
+    $(function(){
+        $("#th-btn").click(function(){
+            window.location.replace(location.pathname + "?lang=th");
+        });
+
+        $("#en-btn").click(function(){
+            window.location.replace(location.pathname + "?lang=en");
+        });
+
+        var body = document.body,
+        html = document.documentElement;
+
+        var height = Math.max( body.scrollHeight, body.offsetHeight,
+                               html.clientHeight, html.scrollHeight, html.offsetHeight );
+        $(".footer").css({top: height});
+    });
 </script>
 </body>
 </html>

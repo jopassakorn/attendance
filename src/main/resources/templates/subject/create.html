@@ -10,7 +10,7 @@
 <div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
 
     <div class="col-md-3 sidebar-info">
-        <label>All subject in Attendance Application</label>
+        <label th:text="#{L0003}">All subject in Attendance Application</label>
         <p th:if="${#lists.size(subejectList)} == 0">There's no section available in this semester</p>
         <ul class="list-group" th:each="subject : ${subejectList}">
             <li class="list-group-item" th:text="${subject.name}">Cras justo odio</li>
