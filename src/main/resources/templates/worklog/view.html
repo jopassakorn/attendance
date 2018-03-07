@@ -25,7 +25,7 @@
                     <th></th>
                 </tr>
                 <tr th:each="worklog : ${worklogList}">
-                    <td th:text="${worklog.date.year + 1900} + '-' + ${worklog.date.month} + '-' + ${worklog.date.date}"></td>
+                    <td th:text="${worklog.date.year + 1900} + '-' + ${worklog.date.month + 1} + '-' + ${worklog.date.date}"></td>
                     <td th:text="${workTimeMap[worklog.date.day - 1]}"></td>
                     <td><a th:text="${worklog.status}"></a></td>
                     <td th:text="${worklog.clockInTime}"></td>

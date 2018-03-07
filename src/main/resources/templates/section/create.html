@@ -9,33 +9,33 @@
 <body>
 <div class="container  font-fam-curs" layout:fragment="main" th:remove="tag">
     <div class="col-md-3 sidebar-info">
-        <h4 th:text="#{l0020}">Your current sections</h4>
-        <p th:if="${#lists.size(currentSectionList)} == 0" th:text="#{l0018}">There's no section available in this semester</p>
+        <h4 th:text="#{L0020}">Your current sections</h4>
+        <p th:if="${#lists.size(currentSectionList)} == 0" th:text="#{L0018}">There's no section available in this semester</p>
         <ul class="list-group" th:each="section : ${currentSectionList}">
             <li class="list-group-item" th:text="${section.subject.name}">Cras justo odio</li>
         </ul>
     </div>
 
     <div class="col-md-9">
-        <p style="font-size: 2vw;margin-left: 2vw;" th:text="#{l0019}">Create new subject.</p>
+        <p style="font-size: 2vw;margin-left: 2vw;" th:text="#{L0019}">Create new subject.</p>
         <div class="section-create">
-            <p style="font-size: 2vw;" th:text="#{l0021}">Please fill the information below.</p>
+            <p style="font-size: 2vw;" th:text="#{L0021}">Please fill the information below.</p>
             <div class="section-create-from">
                 <form th:action="@{/section/create}" th:object="${sectionAddForm}" method="post">
-                    <p><label th:text="#{l0022}">Subject:</label>
+                    <p><label th:text="#{L0022}">Subject:</label>
                         <select name="subject" th:field="*{subjectId}" th:unless="${noSubject}">
                             <option th:each="subject : ${subjectList}" th:value="${subject.id}"
                                     th:text="${subject.name}" >Volvo</option>
                         </select>
                         <a th:if="${noSubject}">There's no subject. Please create subject before open section</a>
                     </p>
-                    <p><label th:text="#{l0023}">Room:</label>
+                    <p><label th:text="#{L0023}">Room:</label>
                         <select name="room" th:field="*{roomId}">
                             <option th:each="fingerprint : ${fingerprintList}" th:value="${fingerprint.id}"
                                     th:text="${fingerprint.room}" th:if="${fingerprint.fingerprintId != 'arduino'}">Volvo</option>
                         </select>
                     </p>
-                    <p><label th:text="#{l0024}">Section start time:</label>
+                    <p><label th:text="#{L0024}">Section start time:</label>
                         <select name="time" th:field="*{secStarted}">
                             <option value="28800">08:00</option>
                             <option value="30600">08:30</option>
@@ -47,7 +47,7 @@
                             <option value="52200">14:00</option>
                         </select>
                     </p>
-                    <p><label th:text="#{l0025}">Day:</label>
+                    <p><label th:text="#{L0025}">Day:</label>
                         <select name="day" th:field="*{day}">
                             <option value="0" th:text="#{s0001}">Monday</option>
                             <option value="1" th:text="#{s0002}">Tuesday</option>
@@ -57,12 +57,12 @@
                         </select>
                     </p>
                     <p class="err-msg"><a th:if="${#fields.hasErrors('day')}" th:errors="*{day}">err-msg</a></p>
-                    <p><label th:text="#{l0026}">Section Started:</label>
+                    <p><label th:text="#{L0026}">Section Started:</label>
                     <input type="date" th:field="*{started}"></p>
-                    <p class="alert-text" th:text="#{l0028}">Note! please select the first day of your class</p>
-                    <p><label th:text="#{l0027}">Section Ended:</label>
+                    <p class="alert-text" th:text="#{L0028}">Note! please select the first day of your class</p>
+                    <p><label th:text="#{L0027}">Section Ended:</label>
                     <input type="date" th:field="*{ended}"></p>
-                    <p class="alert-text" th:text="#{l0028}">Note! please select the last day of your class</p>
+                    <p class="alert-text" th:text="#{L0028}">Note! please select the last day of your class</p>
                     <span><button class="btn btn-md btn-info" th:unless="${noSubject}" th:text="#{B0006}">Submit</button> <a th:href="@{/section/list/} + ${userId}" class="btn btn-md btn-warning" th:text="#{B0007}">Return</a></span>
                 </form>
             </div>
